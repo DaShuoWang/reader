@@ -29,7 +29,7 @@
                             <cite id="nickName"></cite>
                         </a>
                         <dl class="layui-nav-child" id="userAction">
-                            <dd><a lay-href="password.html">修改密码</a></dd>
+                            <dd><a href="password.html" target="_blank">修改密码</a></dd>
                             <hr>
                             <dd style="text-align: center;"><a class="layui-btn" data-type="exit">退出</a></dd>
                         </dl>
@@ -212,7 +212,7 @@
                     contentType:"application/json;charset=utf-8",
                     async:true,
                     success:function(result){
-                        console.log(result);
+                        location.href = "/";
                     }
                 });
             }

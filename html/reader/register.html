@@ -67,6 +67,9 @@
                     async:true,
                     success:function(result){
                         console.log(result);
+                        if (result.resCode == "0000") {
+                            layer.msg('注册成功',{offset: 't',anim: 6});
+                        }
                     }
                 });
             } else {
