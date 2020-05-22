@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="layui/css/layui.css" />
+		<script type="text/javascript" src="layui/layui.js"></script>
+		<link rel="stylesheet" href="css/admin.css" />
+		<link rel="stylesheet" href="css/template.css" />
+	</head>
+	<body>
+		<script type="text/javascript">
+			layui.use(['element'], function() {
+				var $ = layui.$;
+				var novelId = '';
+				var url = location.href.toString();
+				var params = url.split("?")[1].split("&");
+				for (var i = 0; i < params.length; i++) {
+					var arr = params[i].split("=");
+					if (arr != null && arr[0] == "novelId") {
+						novelId = arr[1];
+					}
+				}
+				$.ajax({
+					type: "get",
+					url: '/api/main/pub/novel/content/' + novelId,
+					contentType: "application/json;charset=utf-8",
+					async: true,
+					success: function(result) {
+						document.title = result.resData.novelName;
+						console.log(result);
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
