@@ -52,6 +52,8 @@
                     console.log(result);
                     if (result.resCode == "0000") {
                         location.href = "/";
+                    } else {
+                        layer.msg(result.resData,{offset: 't',anim: 6});
                     }
                 }
             });

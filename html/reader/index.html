@@ -162,7 +162,8 @@
                     div2.append(cover);
                     div2.append(categoryName);
                     var a3 = $("<a></a>");
-                    a3.attr("href","javascript:;");
+                    a3.attr("target","_blank");
+                    a3.attr("href","novelInfo.html?novelId="+result.resData.content[i].novelId);
                     a3.append(div2);
                     var div4 = $("<div></div>");
                     div4.addClass("layui-col-md4");
