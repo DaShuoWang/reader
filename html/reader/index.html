@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>大说网</title>
+    <link rel="stylesheet" href="layui/css/layui.css" />
+    <script type="text/javascript" src="layui/layui.js"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-md9">
+            <span class="layui-breadcrumb">
+              <a href="">首页</a>
+              <a href="">国际新闻</a>
+              <a href="">亚太地区</a>
+              <a><cite>正文</cite></a>
+            </span>
+        </div>
+        <div class="layui-col-md3">
+            <div class="layui-header">
+                <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
+                    <li class="layui-nav-item" lay-unselect>
+                        <a href="javascript:;" id="loginHref">
+                            <cite id="nickName"></cite>
+                        </a>
+                        <dl class="layui-nav-child" id="userAction">
+                            <dd><a lay-href="password.html">修改密码</a></dd>
+                            <hr>
+                            <dd style="text-align: center;"><a class="layui-btn" data-type="exit">退出</a></dd>
+                        </dl>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">全部作品</li>
+                    <li>排行</li>
+                    <li>完本</li>
+                    <li>免费</li>
+                    <li>作家专区</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <div class="layui-container">
+                            <div class="layui-row">
+                                <div class="layui-col-md3">
+                                    <div class="layui-card homepage-bottom">
+                                        <div class="layui-card-header">
+                                            <h3 class="panel-title">
+                                                <i class="layui-icon layui-icon-user"></i>
+                                                宇宙
+                                            </h3>
+                                        </div>
+                                        <div class="layui-card-body" id="universeList">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="layui-col-md9">
+                                    <div class="layui-fluid layadmin-maillist-fluid">
+                                        <div class="layui-row layui-col-space15" id="xiaoshuoList">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-tab-item">2</div>
+                    <div class="layui-tab-item">3</div>
+                    <div class="layui-tab-item">4</div>
+                    <div class="layui-tab-item">5</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    layui.use(['element'], function(){
+        var element = layui.element;
+        var $ = layui.$;
+        $.ajax({
+            type:"get",
+            url:'/api/main/user/info',
+            contentType:"application/json;charset=utf-8",
+            async:true,
+            success:function(result){
+                console.log(result);
+                $("#nickName").text(result.resData.nickname);
+                $("#userAction").removeClass("layui-hide");
+            },
+            error:function(result){
+                console.log(result);
+                $("#nickName").text("登陆");
+                $("#loginHref").attr("href","login.html");
+                $("#userAction").addClass("layui-hide");
+            }
+        });
+        $.ajax({
+            type:"get",
+            url:'/api/main/pub/all',
+            contentType:"application/json;charset=utf-8",
+            async:true,
+            success:function(result){
+                console.log(result);
+                var length = result.resData.length;
+                for (var i = 0; i < length; i++) {
+                    var left = $("<div></div>");
+                    var img = $("<img/>");
+                    img.attr("src","/data/"+result.resData[i].image);
+                    img.attr("style","width:100px;height:100px");
+                    left.append(img);
+                    left.addClass("meida-left");
+                    var right = $("<div></div>");
+                    var p = $("<p></p>");
+                    p.text(result.resData[i].universeName);
+                    var mdall = $("<mdall></mdall>");
+                    mdall.text(result.resData[i].description);
+                    right.append(p);
+                    right.append(mdall);
+                    right.addClass("meida-right");
+                    var a = $("<a></a>");
+                    a.attr("href","javascript:;");
+                    a.addClass("layadmin-privateletterlist-item");
+                    a.append(left);
+                    a.append(right);
+                    $("#universeList").append(a);
+                }
+            }
+        });
+
+        $.ajax({
+            type:"get",
+            url:'/api/main/pub/novel/universe/1',
+            contentType:"application/json;charset=utf-8",
+            async:true,
+            success:function(result){
+                console.log(result);
+                var length = result.resData.content.length;
+                for (var i = 0; i < length; i++) {
+                    var cover = $("<img/>");
+                    cover.attr("src","/data/"+result.resData.content[i].cover);
+                    cover.attr("style","width:100px;height:100px");
+                    var categoryName = $("<div></div>");
+                    categoryName.text(result.resData.content[i].categoryName);
+                    categoryName.addClass("layadmin-maillist-img");
+                    categoryName.addClass("layadmin-font-blod");
+                    var div2 = $("<div></div>");
+                    div2.addClass("layadmin-text-center");
+                    div2.append(cover);
+                    div2.append(categoryName);
+                    var a3 = $("<a></a>");
+                    a3.attr("href","javascript:;");
+                    a3.append(div2);
+                    var div4 = $("<div></div>");
+                    div4.addClass("layui-col-md4");
+                    div4.addClass("layui-col-sm6");
+                    div4.append(a3);
+
+                    var novelName = $("<strong></strong>");
+                    novelName.text(result.resData.content[i].novelName);
+                    var h3 = $("<h3></h3>");
+                    h3.append(novelName);
+                    h3.addClass("layadmin-title");
+                    var summary = $("<strong></strong>");
+                    summary.text(result.resData.content[i].summary);
+                    var div1 = $("<div></div>");
+                    div1.append(summary);
+                    div1.addClass("layadmin-address");
+                    var div8 = $("<div></div>");
+                    div8.addClass("layui-col-md8");
+                    div8.addClass("layadmin-padding-left20");
+                    div8.addClass("layui-col-sm6");
+                    div8.append(h3);
+                    div8.append(div1);
+
+                    var divbox = $("<div></div>");
+                    divbox.addClass("layadmin-contact-box");
+                    divbox.append(div4);
+                    divbox.append(div8);
+                    var divitem = $("<div></div>");
+                    divitem.addClass("layui-col-md4");
+                    divitem.addClass("layui-col-sm6");
+                    divitem.append(divbox);
+                    $("#xiaoshuoList").append(divitem);
+                }
+            }
+        });
+
+        $('.layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+        var active = {
+            exit:function () {
+                $.ajax({
+                    type:"post",
+                    url:'/api/main/logout',
+                    contentType:"application/json;charset=utf-8",
+                    async:true,
+                    success:function(result){
+                        console.log(result);
+                    }
+                });
+            }
+        }
+
+    });
+</script>
+</body>
+</html>
