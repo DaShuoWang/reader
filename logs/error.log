@@ -1,0 +1,15 @@
+2020/05/11 11:46:31 [emerg] 3016#16748: upstream "www" may not have port 8080 in C:\work\apache-tomcat-8.5.50\nginxdashuo/conf/nginx.conf:93
+2020/05/11 11:51:49 [emerg] 14908#192: upstream "www" may not have port 8080 in C:\work\apache-tomcat-8.5.50\nginxdashuo/conf/nginx.conf:93
+2020/05/11 11:53:40 [emerg] 2824#6496: upstream "www" may not have port 8080 in C:\work\apache-tomcat-8.5.50\nginxdashuo/conf/nginx.conf:93
+2020/05/11 11:55:32 [notice] 17228#752: signal process started
+2020/05/11 11:55:48 [notice] 18044#16764: signal process started
+2020/05/15 15:39:21 [error] 21444#15720: *1 upstream timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while connecting to upstream, client: 127.0.0.1, server: 127.0.0.1, request: "GET /data/76_1589524034474.jpg HTTP/1.1", upstream: "http://127.0.0.1:8080/data/76_1589524034474.jpg", host: "127.0.0.1:9090"
+2020/05/15 15:40:22 [error] 21444#15720: *1 upstream timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while connecting to upstream, client: 127.0.0.1, server: 127.0.0.1, request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8080/favicon.ico", host: "127.0.0.1:9090", referrer: "http://127.0.0.1:9090/data/76_1589524034474.jpg"
+2020/05/15 15:40:31 [notice] 1188#8432: signal process started
+2020/05/15 15:41:06 [notice] 19012#18596: signal process started
+2020/05/22 11:32:14 [emerg] 14128#13108: CreateFile() "E:\大说网\nginxdashuo/conf/nginx.conf" failed (1113: No mapping for the Unicode character exists in the target multi-byte code page)
+2020/05/22 11:33:14 [emerg] 7388#5324: CreateFile() "E:\大说网\nginxdashuo/conf/nginx.conf" failed (1113: No mapping for the Unicode character exists in the target multi-byte code page)
+2020/05/22 11:34:47 [emerg] 11688#6628: CreateFile() "E:\大说网\nginxdashuo/conf/nginx.conf" failed (1113: No mapping for the Unicode character exists in the target multi-byte code page)
+2020/05/22 11:36:08 [emerg] 10448#2152: CreateFile() "E:\大说网\nginxdashuo/conf/nginx.conf" failed (1113: No mapping for the Unicode character exists in the target multi-byte code page)
+2020/05/22 11:36:54 [emerg] 3128#11132: CreateFile() "E:\大说网\nginxdashuo/conf/nginx.conf" failed (1113: No mapping for the Unicode character exists in the target multi-byte code page)
+2020/05/22 11:37:52 [error] 15028#10596: *7 CreateFile() "C:\nginxdashuo/html/reader/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: 127.0.0.1, request: "GET /favicon.ico HTTP/1.1", host: "127.0.0.1:9090", referrer: "http://127.0.0.1:9090/index.html"
